@@ -20,17 +20,6 @@ The code that got me and @augustinharter **26.714.618** points in this years Goo
 
 
 
- |  
-|
-
-|
-
-
-
-
-
-
-
 
 
 
