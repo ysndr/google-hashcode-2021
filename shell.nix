@@ -1,15 +1,32 @@
 # This allows overriding pkgs by passing `--arg pkgs ...`
 { pkgs ? import <nixpkgs> {}, pinned ? null }:
+with pkgs;
 let
-  project = import ./default.nix 
-      { inherit pinned; } //
-      (if (isNull pinned) then { inherit pkgs; } else {});
-in with project.pkgs;
+
+  python' = python3.override {
+    packageOverrides = self: super: {
+
+    };
+  };
+
+  python-env = python'.withPackages(pp: with pp; [
+      ipython
+      pip
+      virtualenv
+      pylint
+      autopep8
+      numpy
+      matplotlib
+      tqdm
+  ]);
+
+
+in
 mkShell {
   name = "google-hashcode-env";
   buildInputs = [
     # put packages here.
-    project.python-env
+    python-env
   ];
 
   shellHook = ''

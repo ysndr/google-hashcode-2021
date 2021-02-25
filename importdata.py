@@ -39,32 +39,6 @@ def read_data(file):
     with open(file, 'r') as handle:
         lines = handle.readlines()
 
-        _ , _ ,days = [int(info) for info in lines.pop(0).strip().split(' ')]
-
-        book_scores = [int(score) for score in lines.pop(0).strip().split(' ')]
-
-        book_lookup = {}
-
-
-
-        libraries = []
-        lid = 0
-        while lines:
-            info = lines.pop(0).strip().split(' ')
-            if info == [""]: break
-            (n_books, signup, booksperday) = info
-            books = ([int(bid) for bid in lines.pop(0).strip().split(' ')])
-            sorted_books = sorted(books, key=lambda bid: -book_scores[bid])
-
-
-            for bid in books:
-                libs_with_book = book_lookup.get(bid, set())
-                libs_with_book.add(lid)
-                book_lookup[bid] = libs_with_book
-
-            libraries.append(Library(lid, n_books, sorted_books, signup, booksperday, book_scores, days))
-            lid += 1
-
-    return book_scores, book_lookup, libraries, days
+        return ()
 
 #%%
